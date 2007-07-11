@@ -162,7 +162,7 @@ void send_dir(dirname, sb)
   int    d_cur_entry = 0;
   char ***entries;
   int  *cur_entry, *max_entries;
-  struct stat fb;
+  struct stat64 fb;
 
   f_entries = (char **)malloc(sizeof(char *) * max_f_entries);
   d_entries = (char **)malloc(sizeof(char *) * max_d_entries);
@@ -184,7 +184,7 @@ void send_dir(dirname, sb)
     /* skip . files */
     if(di->d_name[0]=='.') continue;
 
-    if(stat(di->d_name, &fb) < 0) {
+    if(stat64(di->d_name, &fb) < 0) {
       continue;
     }
     if ( S_ISDIR( fb.st_mode ) ) {
@@ -276,7 +276,7 @@ main( int argc, char** argv )
   char line[10000], method[10000], path[10000], protocol[10000], idx[20000], location[20000];
     char * file;
     int len, ich;
-    struct stat sb;
+    struct stat64 sb;
     FILE* fp;
 
     if ( argc != 2 )
@@ -308,7 +308,7 @@ main( int argc, char** argv )
     if ( file[0] == '/' || strcmp( file, ".." ) == 0 || strncmp( file, "../", 3 ) == 0 || strstr( file, "/../" ) != (char*) 0 || strcmp( &(file[len-3]), "/.." ) == 0 )
 	send_error( 400, "Bad Request", (char*) 0, "Illegal filename." );
 
-    if ( stat( file, &sb ) < 0 ) {
+    if ( stat64( file, &sb ) < 0 ) {
       char *ext;
       char *m3ufile;
 
@@ -325,15 +325,15 @@ main( int argc, char** argv )
 	ext[2]='p';
 	ext[3]='3';
 	
-	if(stat(file, &sb) < 0) {
+	if(stat64(file, &sb) < 0) {
 	  ext[1]='M';
 	  ext[2]='P';
 	  
-	  if(stat(file, &sb) < 0) {
+	  if(stat64(file, &sb) < 0) {
 	    ext[1]='o';
 	    ext[2]='g';
 	    ext[3]='g';
-	    if(stat(file, &sb) < 0) {
+	    if(stat64(file, &sb) < 0) {
 	      send_error( 404, "Not Found", file, "MP3 File not found." );
 	      exit(0);
             }
