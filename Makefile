@@ -6,7 +6,7 @@ CC =		gcc
 #LDFLAGS =	-s ${SYSVLIBS}
 LDFLAGS =	-g ${SYSVLIBS}
 VERSION	=	$(shell cat VERSION)
-CFLAGS =	-O -g -DVERSION="\"${VERSION}\""
+CFLAGS =	-O -g -DVERSION="\"${VERSION}\"" -D_LARGEFILE64_SOURCE
 
 all:		roxboryd
 

@@ -36,6 +36,7 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <dirent.h>
+#include <time.h>
 
 #define SERVER_NAME "roxboryd " VERSION
 #define SERVER_ID "$Id: roxboryd.c,v 1.4 2005/03/26 19:48:34 mcr Exp $" 
@@ -379,7 +380,7 @@ main( int argc, char** argv )
 	    send_error( 302, "Found", location, "Directories must end with a slash." );
 	    }
 	(void) snprintf( idx, sizeof(idx), "%sindex.html", file );
-	if ( stat( idx, &sb ) >= 0 )
+	if ( stat64( idx, &sb ) >= 0 )
 	    {
 	    file = idx;
 	    goto do_file;
