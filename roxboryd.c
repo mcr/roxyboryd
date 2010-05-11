@@ -44,7 +44,7 @@
 #define PROTOCOL "HTTP/1.0"
 #define RFC1123FMT "%a, %d %b %Y %H:%M:%S GMT"
 
-#define SELF_URL  "http://YOUR.SERVER.HERE:PORT"
+#define SELF_URL  "http://cassidy.sandelman.ca:81/"
 
 /* Forwards. */
 static void send_error( int status, char* title, char* extra_header, char* text );
@@ -473,6 +473,8 @@ static char* get_mime_type( char* name )
 	return "audio/midi";
     if ( strcmp( dot, ".mp3" ) == 0 )
 	return "audio/mpeg";
+    if ( strcmp( dot, ".ogg" ) == 0 )
+	return "audio/ogg";
     if ( strcmp( dot, ".m3u" ) == 0 )
 	return "audio/x-mpegurl";
     if ( strcmp( dot, ".pac" ) == 0 )
