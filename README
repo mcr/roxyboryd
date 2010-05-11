@@ -10,12 +10,3 @@ files when it sees .ogg/.mp3 files in a directory listing.
 
 In addition roxboryd %-escapes all file names better.
 
-This project is also being used as a test case for a new gForge installation
-at the Government of Canada's Public Works/Government Services. (PWGSC)
-The temporary URL is:
-	http://salt.cose.gc.ca/
-The official URL is (April 4, 2005):
-	http://cose.gc.ca/
-
-
-
